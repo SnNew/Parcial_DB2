@@ -1,0 +1,409 @@
+{
+  "info": {
+    "_postman_id": "12345-abcd-6789-efgh",
+    "name": "API_RESTAURANTE",
+    "description": "API para gestionar restaurante",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Restaurante",
+      "item": [
+        {
+          "name": "Crear Restaurante",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nombre\": \"Restaurante X\", \"ciudad\": \"Ciudad Y\", \"direccion\": \"Calle Z\", \"fecha_apertura\": \"2025-04-25\"}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/restaurantes",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["restaurantes"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Restaurantes",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/restaurantes",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["restaurantes"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar Restaurante",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nombre\": \"Restaurante Nuevo\", \"ciudad\": \"Ciudad A\", \"direccion\": \"Calle B\", \"fecha_apertura\": \"2025-05-01\"}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/restaurantes/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["restaurantes", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Restaurante",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:3000/restaurantes/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["restaurantes", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Empleado",
+      "item": [
+        {
+          "name": "Crear Empleado",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nombre\": \"Juan\", \"rol\": \"Cocinero\", \"id_rest\": 1}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/empleados",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["empleados"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Empleados",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/empleados",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["empleados"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar Empleado",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nombre\": \"Carlos\", \"rol\": \"Mesero\", \"id_rest\": 1}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/empleados/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["empleados", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Empleado",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:3000/empleados/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["empleados", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Producto",
+      "item": [
+        {
+          "name": "Crear Producto",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nombre\": \"Pizza\", \"precio\": 15.99}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/productos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["productos"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Productos",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/productos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["productos"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar Producto",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nombre\": \"Pizza Margarita\", \"precio\": 18.99}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/productos/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["productos", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Producto",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:3000/productos/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["productos", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Pedido",
+      "item": [
+        {
+          "name": "Crear Pedido",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"fecha\": \"2025-04-25\", \"id_rest\": 1, \"total\": 100.50}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/pedidos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["pedidos"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Pedidos",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/pedidos",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["pedidos"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar Pedido",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"fecha\": \"2025-04-26\", \"id_rest\": 1, \"total\": 150.75}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/pedidos/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["pedidos", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar Pedido",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:3000/pedidos/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["pedidos", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "DetallePedido",
+      "item": [
+        {
+          "name": "Crear DetallePedido",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"id_pedido\": 1, \"id_prod\": 1, \"cantidad\": 2, \"subtotal\": 31.98}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/detalles",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["detalles"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener Detalles",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:3000/detalles",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["detalles"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    
+      {
+        "name": "Consultas Nativas",
+        "item": [
+          {
+              "name": "Obtener todos los productos de un pedido específico",
+              "request": {
+                "method": "GET",
+                "url": {
+                  "raw": "http://localhost:3000/pedidos/1/productos",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "3000",
+                  "path": ["pedidos", "1", "productos"]
+                }
+              },
+              "response": []
+            }
+            ,
+            {
+              "name": "Obtener los productos más vendidos (más de X unidades)",
+              "request": {
+                "method": "GET",
+                "url": {
+                  "raw": "http://localhost:3000/productos/mas-vendidos/10",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "3000",
+                  "path": ["productos", "mas-vendidos", "10"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Obtener el total de ventas por restaurante",
+              "request": {
+                "method": "GET",
+                "url": {
+                  "raw": "http://localhost:3000/ventas/restaurantes",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "3000",
+                  "path": ["ventas", "restaurantes"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Obtener los pedidos realizados en una fecha específica",
+              "request": {
+                "method": "GET",
+                "url": {
+                  "raw": "http://localhost:3000/pedidos/fecha/2025-04-25",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "3000",
+                  "path": ["pedidos", "fecha", "2025-04-25"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Obtener los empleados por rol en un restaurante",
+              "request": {
+                "method": "GET",
+                "url": {
+                  "raw": "http://localhost:3000/empleados/rol/cocinero/restaurante/1",
+                  "protocol": "http",
+                  "host": ["localhost"],
+                  "port": "3000",
+                  "path": ["empleados", "rol", "cocinero", "restaurante", "1"]
+                }
+              },
+              "response": []
+            }            
+        ]
+      }      
+  ]
+}

@@ -6,7 +6,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Restaurante
+// CRUD Restaurante
 app.post('/restaurantes', async (req, res) => {
   const { nombre, ciudad, direccion, fecha_apertura } = req.body;
   const result = await pool.query(
@@ -22,11 +22,10 @@ app.get('/restaurantes', async (req, res) => {
 });
 
 app.put('/restaurantes/:id', async (req, res) => {
-  const { id } = req.params;
   const { nombre, ciudad, direccion, fecha_apertura } = req.body;
   await pool.query(
     'UPDATE Restaurante SET nombre=$1, ciudad=$2, direccion=$3, fecha_apertura=$4 WHERE id_rest=$5',
-    [nombre, ciudad, direccion, fecha_apertura, id]
+    [nombre, ciudad, direccion, fecha_apertura, req.params.id]
   );
   res.json({ mensaje: 'Restaurante actualizado' });
 });
@@ -36,8 +35,7 @@ app.delete('/restaurantes/:id', async (req, res) => {
   res.json({ mensaje: 'Restaurante eliminado' });
 });
 
-//Empleado
-
+// CRUD Empleado
 app.post('/empleados', async (req, res) => {
   const { nombre, rol, id_rest } = req.body;
   const result = await pool.query(
@@ -66,8 +64,7 @@ app.delete('/empleados/:id', async (req, res) => {
   res.json({ mensaje: 'Empleado eliminado' });
 });
 
-//Producto
-
+// CRUD Producto
 app.post('/productos', async (req, res) => {
   const { nombre, precio } = req.body;
   const result = await pool.query(
@@ -96,8 +93,7 @@ app.delete('/productos/:id', async (req, res) => {
   res.json({ mensaje: 'Producto eliminado' });
 });
 
-// Pedido
-
+// CRUD Pedido
 app.post('/pedidos', async (req, res) => {
   const { fecha, id_rest, total } = req.body;
   const result = await pool.query(
@@ -126,8 +122,7 @@ app.delete('/pedidos/:id', async (req, res) => {
   res.json({ mensaje: 'Pedido eliminado' });
 });
 
-//Detalle pedido
-
+// CRUD DetallePedido
 app.post('/detalles', async (req, res) => {
   const { id_pedido, id_prod, cantidad, subtotal } = req.body;
   const result = await pool.query(
@@ -156,7 +151,65 @@ app.delete('/detalles/:id', async (req, res) => {
   res.json({ mensaje: 'Detalle eliminado' });
 });
 
-//Servidor
+// Consultas nativas
 
+// Productos de un pedido específico
+app.get('/pedidos/:id/productos', async (req, res) => {
+  const result = await pool.query(
+    `SELECT p.nombre, p.precio, d.cantidad, d.subtotal
+     FROM DetallePedido d
+     JOIN Producto p ON d.id_prod = p.id_prod
+     WHERE d.id_pedido = $1`,
+    [req.params.id]
+  );
+  res.json(result.rows);
+});
+
+// Productos más vendidos (> X unidades)
+app.get('/productos/mas-vendidos/:cantidad', async (req, res) => {
+  const result = await pool.query(
+    `SELECT p.nombre, SUM(d.cantidad) AS total_vendido
+     FROM DetallePedido d
+     JOIN Producto p ON d.id_prod = p.id_prod
+     GROUP BY p.nombre
+     HAVING SUM(d.cantidad) > $1
+     ORDER BY total_vendido DESC`,
+    [req.params.cantidad]
+  );
+  res.json(result.rows);
+});
+
+// Total de ventas por restaurante
+app.get('/ventas/restaurantes', async (req, res) => {
+  const result = await pool.query(
+    `SELECT r.nombre, SUM(p.total) AS total_ventas
+     FROM Pedido p
+     JOIN Restaurante r ON p.id_rest = r.id_rest
+     GROUP BY r.nombre
+     ORDER BY total_ventas DESC`
+  );
+  res.json(result.rows);
+});
+
+// Pedidos por fecha
+app.get('/pedidos/fecha/:fecha', async (req, res) => {
+  const result = await pool.query(
+    'SELECT * FROM Pedido WHERE fecha = $1',
+    [req.params.fecha]
+  );
+  res.json(result.rows);
+});
+
+// Empleados por rol en restaurante
+app.get('/empleados/rol/:rol/restaurante/:id', async (req, res) => {
+  const { rol, id } = req.params;
+  const result = await pool.query(
+    'SELECT * FROM Empleado WHERE rol = $1 AND id_rest = $2',
+    [rol, id]
+  );
+  res.json(result.rows);
+});
+
+// Servidor
 app.listen(3000, () => {
 });
